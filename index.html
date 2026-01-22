@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Cinta Untuk Sinta 💕</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&amp;family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    .font-handwritten {
+      font-family: 'Caveat', cursive;
+    }
+    
+    /* Gradient Background */
+    .gradient-bg {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 25%, #e1bee7 50%, #d1c4e9 75%, #fff3e0 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Floating Hearts Animation */
+    .floating-heart {
+      position: absolute;
+      animation: floatUp 8s ease-in-out infinite;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100%) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100%) rotate(360deg) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    /* Sparkle Animation */
+    .sparkle {
+      position: absolute;
+      animation: sparkle 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Touch Love Effect */
+    .touch-heart {
+      position: fixed;
+      pointer-events: none;
+      animation: touchLove 1.5s ease-out forwards;
+      z-index: 9999;
+    }
+    
+    @keyframes touchLove {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2) rotate(15deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0.5) translateY(-100px) rotate(-15deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Question Slide Animation */
+    .slide-in {
+      animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(50px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+    
+    /* Fade In Animation */
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Button Hover Effect */
+    .answer-btn {
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .answer-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .answer-btn:hover::before {
+      left: 100%;
+    }
+    
+    .answer-btn:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 15px 35px rgba(233, 30, 99, 0.3);
+    }
+    
+    .answer-btn:active {
+      transform: scale(0.98);
+    }
+    
+    /* Pulse Animation */
+    .pulse-heart {
+      animation: pulseHeart 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    /* Bounce Animation */
+    .bounce-in {
+      animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    /* Rotate Animation */
+    .spin-slow {
+      animation: spinSlow 20s linear infinite;
+    }
+    
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Glow Effect */
+    .glow {
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 20px rgba(233, 30, 99, 0.3);
+      }
+      to {
+        box-shadow: 0 0 40px rgba(233, 30, 99, 0.6), 0 0 60px rgba(233, 30, 99, 0.3);
+      }
+    }
+    
+    /* Progress Bar Animation */
+    .progress-fill {
+      transition: width 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    /* Music Button */
+    .music-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .music-btn:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+    
+    .music-playing {
+      animation: musicPulse 1s ease-in-out infinite;
+    }
+    
+    @keyframes musicPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    /* Result Card Animation */
+    .result-card {
+      animation: resultReveal 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    
+    @keyframes resultReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotateY(90deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+      }
+    }
+    
+    /* Confetti Animation */
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      animation: confettiFall 3s ease-out forwards;
+      z-index: 9998;
+    }
+    
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100%) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 182, 193, 0.3);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #ec407a, #ab47bc);
+      border-radius: 10px;
+    }
+    
+    /* Romantic Gombalan Box */
+    .gombalan-box {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(252,228,236,0.9));
+      border: 2px dashed #ec407a;
+      animation: gombalanPop 0.5s ease-out forwards;
+    }
+    
+    @keyframes gombalanPop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full gradient-bg overflow-auto"><!-- Audio Element -->
+  <audio id="bgMusic" loop><source src="https://media1.vocaroo.com/mp3/15dvWFxWhccY" type="audio/mpeg">
+  </audio><!-- Floating Hearts Background -->
+  <div id="floatingHearts" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div><!-- Sparkles Container -->
+  <div id="sparklesContainer" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div><!-- Touch Effects Container -->
+  <div id="touchEffects" class="fixed inset-0 pointer-events-none z-50"></div><!-- Main Container -->
+  <div class="relative z-10 min-h-full flex flex-col items-center justify-center p-4"><!-- Music Control Button --> <button id="musicBtn" class="fixed top-4 right-4 w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center music-btn z-40 border-2 border-pink-300"> <span id="musicIcon" class="text-2xl">🎵</span> </button> <!-- Welcome Screen -->
+   <div id="welcomeScreen" class="w-full max-w-lg">
+    <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 text-center fade-in glow"><!-- Decorative Header -->
+     <div class="relative mb-6">
+      <div class="absolute -top-4 left-1/2 transform -translate-x-1/2"><span class="text-5xl pulse-heart inline-block">💕</span>
+      </div>
+      <div class="pt-8">
+       <h1 id="mainTitle" class="font-handwritten text-5xl md:text-6xl text-pink-500 mb-2">Quiz Cinta</h1>
+       <h2 class="font-handwritten text-3xl md:text-4xl text-purple-400">Untuk <span id="recipientDisplay" class="text-pink-600">Sinta</span> 💖</h2>
+      </div>
+     </div><!-- Romantic Message -->
+     <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 mb-6">
+      <p class="text-gray-600 text-lg leading-relaxed">Hai sayang... 🌸<br>
+        Aku buat quiz spesial ini untukmu!<br><span class="font-handwritten text-xl text-pink-500">Yuk kita lihat seberapa romantis kamu~ 💝</span></p>
+     </div><!-- Decorative Elements -->
+     <div class="flex justify-center space-x-4 mb-6"><span class="text-3xl spin-slow inline-block">🌸</span> <span class="text-3xl pulse-heart inline-block">💗</span> <span class="text-3xl spin-slow inline-block" style="animation-direction: reverse;">✨</span> <span class="text-3xl pulse-heart inline-block">💗</span> <span class="text-3xl spin-slow inline-block">🌺</span>
+     </div><!-- Start Button --> <button id="startBtn" class="w-full bg-gradient-to-r from-pink-400 via-pink-500 to-purple-500 text-white font-bold text-xl py-4 px-8 rounded-full shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 active:scale-95"> <span class="flex items-center justify-center space-x-2"> <span>Mulai Quiz</span> <span class="text-2xl">💌</span> </span> </button> <!-- Hint -->
+     <p class="text-sm text-gray-400 mt-4 font-handwritten text-lg">✨ Sentuh layar untuk melihat cinta bertebaran~ ✨</p>
+    </div>
+   </div><!-- Quiz Screen -->
+   <div id="quizScreen" class="w-full max-w-lg hidden">
+    <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-8"><!-- Progress Bar -->
+     <div class="mb-6">
+      <div class="flex justify-between items-center mb-2"><span class="text-sm text-pink-500 font-semibold">Pertanyaan <span id="currentQ">1</span>/15</span> <span class="text-sm text-purple-500 font-semibold">Skor: <span id="currentScore">0</span> 💕</span>
+      </div>
+      <div class="w-full bg-pink-100 rounded-full h-3 overflow-hidden">
+       <div id="progressBar" class="progress-fill h-full bg-gradient-to-r from-pink-400 to-purple-500 rounded-full" style="width: 6.67%"></div>
+      </div>
+     </div><!-- Question Container -->
+     <div id="questionContainer" class="slide-in"><!-- Gombalan Box -->
+      <div id="gombalanBox" class="gombalan-box rounded-2xl p-4 mb-4 text-center"><span class="text-2xl">💝</span>
+       <p id="gombalanText" class="font-handwritten text-xl text-pink-600 mt-2"></p>
+      </div><!-- Question -->
+      <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-5 mb-5">
+       <h3 id="questionText" class="text-lg md:text-xl text-gray-700 font-medium text-center leading-relaxed"></h3>
+      </div><!-- Answer Options -->
+      <div id="answersContainer" class="space-y-3"><!-- Answers will be inserted here -->
+      </div>
+     </div>
+    </div>
+   </div><!-- Result Screen -->
+   <div id="resultScreen" class="w-full max-w-lg hidden">
+    <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 text-center result-card glow"><!-- Result Header -->
+     <div class="mb-6"><span class="text-6xl bounce-in inline-block">🏆</span>
+      <h2 class="font-handwritten text-4xl md:text-5xl text-pink-500 mt-4">Hasil Quiz</h2>
+      <p class="text-purple-400 font-handwritten text-2xl">Untuk <span id="resultName">Sinta</span> Tersayang 💖</p>
+     </div><!-- Score Display -->
+     <div class="bg-gradient-to-r from-pink-100 via-purple-100 to-pink-100 rounded-2xl p-6 mb-6">
+      <p class="text-gray-600 text-lg mb-2">Skor Kamu:</p>
+      <p class="font-handwritten text-6xl text-pink-500 mb-2"><span id="finalScore">0</span>/15</p>
+      <div id="scoreHearts" class="text-3xl"></div>
+     </div><!-- Result Message -->
+     <div id="resultMessage" class="bg-white rounded-2xl p-6 mb-6 shadow-inner border-2 border-pink-200"><!-- Result message will be inserted here -->
+     </div><!-- Love Message -->
+     <div class="bg-gradient-to-r from-pink-200 to-purple-200 rounded-2xl p-5 mb-6">
+      <p class="font-handwritten text-2xl text-gray-700 leading-relaxed">"Apapun hasilnya, kamu tetap yang paling spesial di hatiku, <span id="loveName">Sinta</span>! 💝"</p>
+     </div><!-- Restart Button --> <button id="restartBtn" class="w-full bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 text-white font-bold text-xl py-4 px-8 rounded-full shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 active:scale-95"> <span class="flex items-center justify-center space-x-2"> <span>Main Lagi</span> <span class="text-2xl">🔄</span> </span> </button>
+    </div>
+   </div>
+  </div>
+  <script>
+    // ==================== Configuration ====================
+    const defaultConfig = {
+      quiz_title: "Quiz Cinta",
+      recipient_name: "Sinta",
+      primary_color: "#ec407a",
+      secondary_color: "#ab47bc",
+      background_color: "#fce4ec",
+      text_color: "#4a4a4a",
+      accent_color: "#ff80ab"
+    };
+    
+    let config = { ...defaultConfig };
+    
+    // ==================== Quiz Data ====================
+    const quizData = [
+      {
+        gombalan: "Kamu tau nggak? Matamu lebih indah dari bintang di langit~ ⭐",
+        question: "Kalau kita lagi jalan berdua, kamu lebih suka apa?",
+        answers: [
+          { text: "Gandengan tangan sambil cerita 💑", score: 3 },
+          { text: "Jalan santai sambil makan jajanan 🍦", score: 2 },
+          { text: "Foto-foto aesthetic bareng 📸", score: 2 },
+          { text: "Diam-diam tapi hati berbunga 🌸", score: 1 }
+        ]
+      },
+      {
+        gombalan: "Kamu pasti capek ya? Soalnya kamu berlari di pikiranku terus~ 🏃‍♀️💭",
+        question: "Pesan romantis seperti apa yang bikin kamu senyum-senyum?",
+        answers: [
+          { text: "Yang puitis dan dalam 📝", score: 2 },
+          { text: "Yang lucu dan bikin ketawa 😄", score: 3 },
+          { text: "Yang singkat tapi manis 💕", score: 2 },
+          { text: "Yang jujur dan tulus 💝", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Aku bukan fotografer, tapi aku bisa membayangkan kita berdua~ 📷💕",
+        question: "Date ideal kamu itu seperti apa sih?",
+        answers: [
+          { text: "Nonton sunset romantis 🌅", score: 3 },
+          { text: "Movie marathon di rumah 🎬", score: 2 },
+          { text: "Makan di tempat favorit 🍽️", score: 2 },
+          { text: "Jalan-jalan ke tempat baru 🗺️", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Kamu tau vitamin apa yang aku butuhkan? Vitamin U~ 💊💖",
+        question: "Kalau pasangan kamu lagi sedih, kamu bakal?",
+        answers: [
+          { text: "Peluk erat sampai tenang 🤗", score: 3 },
+          { text: "Dengerin ceritanya sampai selesai 👂", score: 3 },
+          { text: "Beliin makanan kesukaannya 🍕", score: 2 },
+          { text: "Ajak jalan biar fresh 🚶‍♀️", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Kamu harus ditilang nih, karena udah mencuri hatiku~ 👮‍♂️💘",
+        question: "Love language kamu yang paling dominan apa?",
+        answers: [
+          { text: "Quality Time ⏰", score: 3 },
+          { text: "Words of Affirmation 💬", score: 3 },
+          { text: "Physical Touch 🤝", score: 2 },
+          { text: "Acts of Service 🎁", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Aku bukan ahli geografi, tapi aku tersesat di matamu~ 🗺️👀",
+        question: "Hal kecil apa yang bikin kamu merasa disayang?",
+        answers: [
+          { text: "Diingetin makan & istirahat 🍚", score: 3 },
+          { text: "Dipuji dan diapresiasi ✨", score: 2 },
+          { text: "Diajak ngobrol panjang 💭", score: 2 },
+          { text: "Dikasih surprise kecil 🎀", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Kamu pasti terbuat dari gula, soalnya manis banget~ 🍬💗",
+        question: "Kalau lagi kangen, kamu biasanya ngapain?",
+        answers: [
+          { text: "Chat atau video call 📱", score: 2 },
+          { text: "Lihat foto-foto bareng 📷", score: 2 },
+          { text: "Dengerin lagu yang mengingatkan 🎵", score: 3 },
+          { text: "Nulis perasaan di diary 📖", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Aku bukan electrician, tapi aku bisa menerangi harimu~ ⚡💡",
+        question: "Menurutmu, apa yang paling penting dalam hubungan?",
+        answers: [
+          { text: "Kepercayaan 🤝", score: 3 },
+          { text: "Komunikasi yang baik 💬", score: 3 },
+          { text: "Saling mendukung 💪", score: 2 },
+          { text: "Quality time bersama ⏰", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Kamu tau nggak? Kamu itu seperti wifi, aku nggak bisa hidup tanpamu~ 📶💕",
+        question: "Kalau dikasih bunga, kamu lebih suka yang mana?",
+        answers: [
+          { text: "Mawar merah klasik 🌹", score: 2 },
+          { text: "Bunga matahari ceria 🌻", score: 2 },
+          { text: "Buket mixed colorful 💐", score: 3 },
+          { text: "Bunga simple tapi bermakna 🌸", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Aku bukan pilot, tapi aku bisa membawamu terbang ke awan~ ✈️☁️",
+        question: "Cara kamu menunjukkan sayang itu gimana?",
+        answers: [
+          { text: "Lewat perhatian kecil sehari-hari 💝", score: 3 },
+          { text: "Bilang langsung 'aku sayang kamu' 💕", score: 3 },
+          { text: "Lewat tindakan & bantuan 🤲", score: 2 },
+          { text: "Kasih hadiah spesial 🎁", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Kamu pasti dari surga, soalnya kamu malaikat yang turun ke bumi~ 👼✨",
+        question: "Lagu romantis yang bikin kamu baper itu genre apa?",
+        answers: [
+          { text: "Pop ballad yang dalam 🎤", score: 2 },
+          { text: "R&B yang smooth 🎷", score: 2 },
+          { text: "Acoustic yang simple 🎸", score: 3 },
+          { text: "Indo love song 🇮🇩", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Aku rela jadi kucing, biar kamu elus-elus terus~ 🐱💗",
+        question: "Momen romantis favoritmu itu kapan?",
+        answers: [
+          { text: "Saat ngobrol sampai larut malam 🌙", score: 3 },
+          { text: "Saat makan bareng 🍝", score: 2 },
+          { text: "Saat jalan-jalan santai 🚶‍♀️", score: 2 },
+          { text: "Saat pelukan hangat 🤗", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Kamu tau kenapa langit biru? Karena semua warna pink ada di pipimu~ 🌈💕",
+        question: "Kalau dikasih surat cinta, kamu bakal?",
+        answers: [
+          { text: "Baca berulang-ulang sambil senyum 😊", score: 3 },
+          { text: "Simpan rapi sebagai kenangan 📦", score: 3 },
+          { text: "Foto dan jadiin wallpaper 📱", score: 2 },
+          { text: "Langsung balas dengan surat juga 💌", score: 2 }
+        ]
+      },
+      {
+        gombalan: "Aku bukan komedian, tapi aku rela jadi badut asal kamu ketawa~ 🤡💖",
+        question: "Hal apa yang bikin kamu jatuh cinta sama seseorang?",
+        answers: [
+          { text: "Sifatnya yang perhatian 💝", score: 3 },
+          { text: "Humornya yang bikin ketawa 😄", score: 2 },
+          { text: "Caranya ngehargain kamu 🌟", score: 3 },
+          { text: "Ketulusannya yang terasa 💕", score: 3 }
+        ]
+      },
+      {
+        gombalan: "Kamu itu seperti bintang, selalu terang di malamku yang gelap~ ⭐🌙",
+        question: "Kata-kata 'I Love You' paling bermakna kalau diucapkan kapan?",
+        answers: [
+          { text: "Saat momen biasa sehari-hari 🌸", score: 3 },
+          { text: "Saat anniversary atau momen spesial 🎉", score: 2 },
+          { text: "Saat salah satu lagi down 💙", score: 3 },
+          { text: "Random tanpa alasan 💕", score: 3 }
+        ]
+      }
+    ];
+    
+    // ==================== State Variables ====================
+    let currentQuestion = 0;
+    let score = 0;
+    let isMusicPlaying = false;
+    
+    // ==================== DOM Elements ====================
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const quizScreen = document.getElementById('quizScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const startBtn = document.getElementById('startBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    
+    // ==================== Initialize SDK ====================
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (newConfig) => {
+          config = { ...defaultConfig, ...newConfig };
+          updateUI();
+        },
+        mapToCapabilities: (cfg) => ({
+          recolorables: [
+            {
+              get: () => cfg.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                cfg.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => cfg.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                cfg.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => cfg.background_color || defaultConfig.background_color,
+              set: (value) => {
+                cfg.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => cfg.text_color || defaultConfig.text_color,
+              set: (value) => {
+                cfg.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => cfg.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                cfg.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ["quiz_title", cfg.quiz_title || defaultConfig.quiz_title],
+          ["recipient_name", cfg.recipient_name || defaultConfig.recipient_name]
+        ])
+      });
+    }
+    
+    // ==================== Update UI Function ====================
+    function updateUI() {
+      const title = config.quiz_title || defaultConfig.quiz_title;
+      const name = config.recipient_name || defaultConfig.recipient_name;
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      
+      document.getElementById('mainTitle').textContent = title;
+      document.getElementById('recipientDisplay').textContent = name;
+      document.getElementById('resultName').textContent = name;
+      document.getElementById('loveName').textContent = name;
+      
+      // Update colors
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+    }
+    
+    // ==================== Create Floating Hearts ====================
+    function createFloatingHearts() {
+      const container = document.getElementById('floatingHearts');
+      const hearts = ['💕', '💗', '💖', '💝', '💘', '❤️', '💓', '💞', '🌸', '✨', '⭐', '🌺'];
+      
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'floating-heart';
+          heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.left = Math.random() * 100 + '%';
+          heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+          heart.style.animationDelay = Math.random() * 5 + 's';
+          heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+          container.appendChild(heart);
+          
+          setTimeout(() => heart.remove(), 15000);
+        }, i * 500);
+      }
+    }
+    
+    // Keep creating hearts
+    setInterval(createFloatingHearts, 10000);
+    createFloatingHearts();
+    
+    // ==================== Create Sparkles ====================
+    function createSparkles() {
+      const container = document.getElementById('sparklesContainer');
+      const sparkleChars = ['✨', '⭐', '💫', '🌟'];
+      
+      for (let i = 0; i < 10; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.innerHTML = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 5000);
+      }
+    }
+    
+    setInterval(createSparkles, 3000);
+    createSparkles();
+    
+    // ==================== Touch Love Effect ====================
+    document.addEventListener('click', (e) => {
+      createTouchHearts(e.clientX, e.clientY);
+    });
+    
+    document.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      createTouchHearts(touch.clientX, touch.clientY);
+    });
+    
+    function createTouchHearts(x, y) {
+      const container = document.getElementById('touchEffects');
+      const hearts = ['💕', '💗', '💖', '💝', '❤️', '💓', '🌸', '✨'];
+      
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'touch-heart';
+          heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.left = (x + (Math.random() - 0.5) * 50) + 'px';
+          heart.style.top = (y + (Math.random() - 0.5) * 50) + 'px';
+          heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+          container.appendChild(heart);
+          
+          setTimeout(() => heart.remove(), 1500);
+        }, i * 100);
+      }
+    }
+    
+    // ==================== Music Control ====================
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMusic();
+    });
+    
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        musicIcon.textContent = '🎵';
+        musicBtn.classList.remove('music-playing');
+      } else {
+        bgMusic.play().catch(err => console.log('Audio play failed:', err));
+        musicIcon.textContent = '🎶';
+        musicBtn.classList.add('music-playing');
+      }
+      isMusicPlaying = !isMusicPlaying;
+    }
+    
+    // ==================== Quiz Functions ====================
+    function startQuiz() {
+      welcomeScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      currentQuestion = 0;
+      score = 0;
+      showQuestion();
+      
+      // Auto-play music on start
+      if (!isMusicPlaying) {
+        bgMusic.play().catch(err => console.log('Audio play failed:', err));
+        musicIcon.textContent = '🎶';
+        musicBtn.classList.add('music-playing');
+        isMusicPlaying = true;
+      }
+    }
+    
+    function showQuestion() {
+      const data = quizData[currentQuestion];
+      const container = document.getElementById('questionContainer');
+      
+      // Update progress
+      document.getElementById('currentQ').textContent = currentQuestion + 1;
+      document.getElementById('currentScore').textContent = score;
+      document.getElementById('progressBar').style.width = ((currentQuestion + 1) / 15 * 100) + '%';
+      
+      // Update gombalan
+      document.getElementById('gombalanText').textContent = data.gombalan;
+      
+      // Update question
+      document.getElementById('questionText').textContent = data.question;
+      
+      // Shuffle and create answers
+      const shuffledAnswers = [...data.answers].sort(() => Math.random() - 0.5);
+      const answersContainer = document.getElementById('answersContainer');
+      answersContainer.innerHTML = '';
+      
+      shuffledAnswers.forEach((answer, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn w-full bg-gradient-to-r from-pink-100 to-purple-100 hover:from-pink-200 hover:to-purple-200 text-gray-700 font-medium py-4 px-6 rounded-2xl text-left border-2 border-pink-200 hover:border-pink-400 shadow-md';
+        btn.innerHTML = `<span class="flex items-center"><span class="w-8 h-8 rounded-full bg-pink-300 text-white flex items-center justify-center mr-3 text-sm font-bold">${String.fromCharCode(65 + index)}</span>${answer.text}</span>`;
+        btn.style.animationDelay = (index * 0.1) + 's';
+        btn.onclick = () => selectAnswer(answer.score);
+        answersContainer.appendChild(btn);
+      });
+      
+      // Animate
+      container.classList.remove('slide-in');
+      void container.offsetWidth;
+      container.classList.add('slide-in');
+    }
+    
+    function selectAnswer(answerScore) {
+      score += answerScore;
+      
+      // Create celebration effect
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const btn = event.target.closest('button');
+          const rect = btn.getBoundingClientRect();
+          createTouchHearts(rect.left + rect.width / 2, rect.top);
+        }, i * 100);
+      }
+      
+      currentQuestion++;
+      
+      if (currentQuestion < quizData.length) {
+        setTimeout(showQuestion, 500);
+      } else {
+        setTimeout(showResult, 500);
+      }
+    }
+    
+    function showResult() {
+      quizScreen.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+      
+      document.getElementById('finalScore').textContent = score;
+      
+      // Create heart rating
+      const maxScore = 100; // 15 questions × 3 max points
+      const percentage = (score / maxScore) * 100;
+      const heartCount = Math.ceil(percentage / 20);
+      document.getElementById('scoreHearts').textContent = '💖'.repeat(heartCount) + '🤍'.repeat(5 - heartCount);
+      
+      // Result messages based on score
+      let message = '';
+      if (percentage >= 80) {
+        message = `
+          <div class="text-center">
+            <span class="text-5xl mb-3 inline-block bounce-in">👑💕</span>
+            <h3 class="font-handwritten text-3xl text-pink-500 mb-3">Romantis Sejati!</h3>
+            <p class="text-gray-600 leading-relaxed">Waaah ${config.recipient_name || 'Sinta'}! Kamu adalah definisi dari cinta sejati! Hatimu penuh dengan kasih sayang dan keromantisan. Beruntungnya aku punya kamu~ 💝</p>
+          </div>
+        `;
+      } else if (percentage >= 60) {
+        message = `
+          <div class="text-center">
+            <span class="text-5xl mb-3 inline-block bounce-in">🌹💗</span>
+            <h3 class="font-handwritten text-3xl text-pink-500 mb-3">Romantis Manis!</h3>
+            <p class="text-gray-600 leading-relaxed">${config.recipient_name || 'Sinta'} sayang~ Kamu punya hati yang hangat dan penuh cinta! Cara kamu mencintai itu spesial banget. Aku bangga sama kamu! 💖</p>
+          </div>
+        `;
+      } else if (percentage >= 40) {
+        message = `
+          <div class="text-center">
+            <span class="text-5xl mb-3 inline-block bounce-in">🌸💓</span>
+            <h3 class="font-handwritten text-3xl text-pink-500 mb-3">Romantis Pemalu!</h3>
+            <p class="text-gray-600 leading-relaxed">${config.recipient_name || 'Sinta'}~ Kamu romantis dengan caramu sendiri yang unik! Meskipun kadang malu-malu, cintamu tetap terasa hangat. Sweet banget! 💕</p>
+          </div>
+        `;
+      } else {
+        message = `
+          <div class="text-center">
+            <span class="text-5xl mb-3 inline-block bounce-in">🌷💞</span>
+            <h3 class="font-handwritten text-3xl text-pink-500 mb-3">Cinta Dalam Diam!</h3>
+            <p class="text-gray-600 leading-relaxed">${config.recipient_name || 'Sinta'} tersayang~ Kamu mencintai dengan cara yang sederhana tapi tulus. Ketulusanmu itu yang bikin kamu istimewa! 💗</p>
+          </div>
+        `;
+      }
+      
+      document.getElementById('resultMessage').innerHTML = message;
+      
+      // Create confetti celebration
+      createConfetti();
+    }
+    
+    function createConfetti() {
+      const colors = ['#ec407a', '#ab47bc', '#ff80ab', '#f48fb1', '#ce93d8', '#ffb74d'];
+      const shapes = ['💕', '💖', '💗', '✨', '🌸', '⭐', '🎉', '💝'];
+      
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          document.body.appendChild(confetti);
+          
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 50);
+      }
+    }
+    
+    function restartQuiz() {
+      resultScreen.classList.add('hidden');
+      welcomeScreen.classList.remove('hidden');
+      currentQuestion = 0;
+      score = 0;
+    }
+    
+    // ==================== Event Listeners ====================
+    startBtn.addEventListener('click', startQuiz);
+    restartBtn.addEventListener('click', restartQuiz);
+    
+    // Initial UI update
+    updateUI();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1c6755720fa02d',t:'MTc2OTA1NzE0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
